@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%= render 'layouts/header' %>
+  <div class="fixed">
+    <p>
+      <h1>SIDEBAR</h1>
+      <p><%= link_to "All articles", controller: 'articles' %></p>
+      <% if current_user %>                
+        <p><%= link_to "My Articles", controller: 'articles', :user => current_user%></p>
+      <% end %>        
+    </p>
+  </div>
+  <div class="content-background">
+    <% flash.each do |message_type, message| %>
+	      <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+    <% end %>
+	  <%= yield %>
+  </div>
+<%= debug(params) if Rails.env.development? %>
+
+</body>
+</html>

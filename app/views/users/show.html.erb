@@ -1,0 +1,30 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h3>
+        <%= @user.name %>
+      </h3>      
+      <%= @user.email %>      
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <% if @user.articles.any? %>      
+      <h4>articles (<%= @user.articles.count %>)</h4>
+      <%= will_paginate @articles%> 
+      <ol>
+        <% @articles.each do |article| %>
+          <li>
+            <%= link_to article.title, article %>
+          </li>
+        <% end %>
+      </ol>
+      <%= will_paginate @articles%> 
+    <% end %>
+  </div>
+</div>
+
+<!--
+<p>User: <%= @user.name %></p>
+<p>email: <%= @user.email %></p>
+-->

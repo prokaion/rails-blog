@@ -1,0 +1,11 @@
+
+<% if @comment != nil && @comment.errors.any? %>
+  <div id="error_explanation">
+      The comment contains <%= pluralize(@comment.errors.count, "error") %>.
+    <ul>
+    <% @comment.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

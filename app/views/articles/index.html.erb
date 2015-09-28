@@ -1,0 +1,12 @@
+<h2>
+  Listing articles 
+  <% if @user %>
+    of <%= link_to @user.name, @user %>
+  <% end %>
+ (<%= @articles.count %>)
+</h2>
+
+  <%= render @articles %>
+
+
+

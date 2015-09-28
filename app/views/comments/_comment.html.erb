@@ -1,0 +1,19 @@
+<div class="comment">
+  <div class="content">
+    <p>
+      <strong>Commenter:</strong>
+      <%= comment.commenter %>
+    </p>
+
+    <p>
+      <strong>Comment:</strong>
+      <%= simple_format(comment.body) %>
+    </p>
+    <% if admin_user? %>
+      <%= link_to 'Destroy Comment', [comment.article, comment],
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  </div>
+</div>
+<br>
