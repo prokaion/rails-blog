@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get     'login'   =>  'sessions#new'
   post    'login'   =>  'sessions#create'
   delete  'logout'  =>  'sessions#destroy'
+  get '/user_articles', to: 'articles#articles_by_user'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :articles do
     resources :comments
+    get :autocomplete_user_name, :on => :collection
   end
   resources :users
   resources :account_activations, only: [:edit]

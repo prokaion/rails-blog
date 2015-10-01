@@ -2,6 +2,12 @@ class ArticlesController < ApplicationController
   before_action :logged_in_user,        only: [:create, :edit, :update, :destroy]
   before_action :correct_user_or_admin, only: [:edit, :update, :destroy]
 
+  autocomplete :user, :name
+  
+  def articles_by_user
+    puts "Atricles_by_user called!"
+  end
+
 	def index
     if (user_param_and_current_user_present && params[:user] == current_user.id.to_s)
       @user = current_user

@@ -1,11 +1,23 @@
+
 <div class="fixed">
   <p>
     <h1>SIDEBAR</h1>
     <p><%= link_to "All articles", controller: 'articles' %></p>
     <% if current_user %>                
       <p><%= link_to "My Articles", controller: 'articles', :user => current_user%></p>
-    <% end %> 
-    
+    <% end %>
+    </p>
+    <p> Bubber </p>
+
+    <p>
+    <%= form_tag( user_articles_path, :method => 'get', :class => 'search' ) do %>
+      <%= label_tag( :by_user, "By user:") %>
+      <%= autocomplete_field_tag(:search, params[:search], autocomplete_user_name_articles_path, {class: "search-query", placeholder: "User name", type: "search"}) %> 
+      <div id="search_results"></div> 
+      <%= submit_tag ("Search"), style: "display: none;" %>
+    <% end %>
+    </p>
+<!--
     <span class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">By User: <b class="caret"></b></a>
       <ul class="dropdown-menu">
@@ -14,4 +26,5 @@
         <% end %>            
       </ul>          
     </span>
+-->
 </div>
