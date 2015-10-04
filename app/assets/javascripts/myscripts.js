@@ -1,3 +1,4 @@
+/*
 $(document).ready(function(){
 $( "#search" ).autocomplete({
 alert("bla!");
@@ -15,7 +16,7 @@ alert("bla!");
   ul.append( '<li><a href="/search/'+ this.term + '">Search: '+ this.term + '</a></li>' );  
 };
 });
-/*
+
 $(document).ready(function(){
   $('#search').bind('keydown', function(event, data){
     
@@ -23,6 +24,13 @@ $(document).ready(function(){
   });
 });
 */
+$(document).ready(function(){
+$( "#search-form" ).railsAutocomplete({
+  alert("huhu!");
+  appendTo: "#someElem"
+});
+});
+
 $(document).ready(function(){
     $("#help").click(function(){
         alert('blub');

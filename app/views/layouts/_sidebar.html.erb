@@ -10,10 +10,10 @@
     <p> Bubber </p>
 
     <p>
-    <%= form_tag( user_articles_path, :method => 'get', :class => 'search' ) do %>
+    <%= form_tag( user_articles_path, :method => 'get', :class => "search-form" ) do %>
       <%= label_tag( :by_user, "By user:") %>
       <%= autocomplete_field_tag(:search, params[:search], autocomplete_user_name_articles_path, {class: "search-query", placeholder: "User name", type: "search"}) %> 
-      <div id="search_results"></div> 
+      <div></div> 
       <%= submit_tag ("Search"), style: "display: none;" %>
     <% end %>
     </p>
