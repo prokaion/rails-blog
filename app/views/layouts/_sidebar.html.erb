@@ -1,3 +1,8 @@
+<script>
+  $(function() {
+    new app.Users;
+  });
+</script>
 
 <div class="fixed">
   <p>
@@ -7,24 +12,14 @@
       <p><%= link_to "My Articles", controller: 'articles', :user => current_user%></p>
     <% end %>
     </p>
-    <p> Bubber </p>
+    Articles by:</br>
+    <div class="user-search">
+      <%= form_tag( user_articles_path, :method => 'get' ) do %>
+      <%= text_field_tag :username, params[:username], id: "user-search-txt", placeholder: 'User name.....' %>
+      <!--<input type="text" id="user-search-txt", name="username", value="x", autofocus>-->
+      <div class="results" id="user-search-results"></div>
+      <!--<%= button_tag(type: 'submit')%>-->
+      <% end %>
+    </div>
 
-    <p>
-    <%= form_tag( user_articles_path, :method => 'get', :class => "search-form" ) do %>
-      <%= label_tag( :by_user, "By user:") %>
-      <%= autocomplete_field_tag(:search, params[:search], autocomplete_user_name_articles_path, {class: "search-query", placeholder: "User name", type: "search"}) %> 
-      <div></div> 
-      <%= submit_tag ("Search"), style: "display: none;" %>
-    <% end %>
-    </p>
-<!--
-    <span class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">By User: <b class="caret"></b></a>
-      <ul class="dropdown-menu">
-        <% ApplicationController::ALL_USERS.each do |one_user| %>
-          <li><%= link_to one_user.name, one_user %></li> 
-        <% end %>            
-      </ul>          
-    </span>
--->
 </div>

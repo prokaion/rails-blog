@@ -3,6 +3,17 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
 
+  def autocomplete
+    @users = User.order(:name).where("name LIKE ?", "%#{params[:term]}%")
+    respond_to do |format|
+      format.html
+      format.json { 
+        render json: @users.map(&:name)
+      }
+      puts format.to_s
+    end
+  end
+
 	def index
 		@users = User.paginate(page: params[:page]).where(activated: true)
 	end

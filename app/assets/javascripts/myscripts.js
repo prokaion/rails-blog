@@ -1,39 +1,63 @@
-/*
-$(document).ready(function(){
-$( "#search" ).autocomplete({
-alert("bla!");
-    source:$('#search').data('source'),
-    html: true,
-    appendTo: "#search_results",
-    select: function( event, ui ) {
-        window.location=ui.item.value;
-        return false;
-    },
-      focus: function( event, ui ) { },
-      open: function( event, ui ) { }
-}).data( "autocomplete" )._renderMenu = function( ul, items ) {
-  $.ui.autocomplete.prototype._renderMenu.apply( this, [ul, items] );
-  ul.append( '<li><a href="/search/'+ this.term + '">Search: '+ this.term + '</a></li>' );  
-};
-});
 
-$(document).ready(function(){
-  $('#search').bind('keydown', function(event, data){
-    
-    alert("hello");
+var app = window.app = {};
+
+app.Users = function() {
+  this._input = $('#user-search-txt');
+  this._initAutocomplete();
+};
+
+app.Users.prototype = {
+
+  _initAutocomplete: function() {
+    this._input
+      .autocomplete({
+        source: '/users/autocomplete.json',
+        appendTo: '#user-search-results',
+        select: $.proxy(this._select, this)
+      })
+      .autocomplete('instance')._renderItem = $.proxy(this._render, this);
+  },
+
+  _select: function(e, ui) {
+    this._input.val(ui.item.value);
+    return false;
+  },
+
+  _render: function(ul, item) {
+
+    var markup = [
+      '<span class="userResult">' + item.value + '</span>',
+    ];
+    return $('<li>')
+      .append(markup.join(''))
+      .appendTo(ul);
+  }
+
+};
+
+
+
+
+/* -----------------------------------------------------*/
+/*
+var ready;
+ready = (function() {
+alert("blub");
+  $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
+  $("#navbar-search-input").autocomplete({
+    source: '/users/autocomplete.json',
+    appendTo: '.results'
   });
 });
-*/
-$(document).ready(function(){
-$( "#search-form" ).railsAutocomplete({
-  alert("huhu!");
-  appendTo: "#someElem"
-});
-});
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
 
 $(document).ready(function(){
     $("#help").click(function(){
         alert('blub');
     });
 });
+*/
 

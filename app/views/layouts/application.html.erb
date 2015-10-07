@@ -8,9 +8,9 @@
 </head>
 <body>
 
-  <%= render 'layouts/header' %>
 
-  <%= render 'layouts/sidebar' %>
+  <%= render 'layouts/header' %>
+  <%= render 'layouts/sidebar' %> 
 
   <div class="content-background">
     <% flash.each do |message_type, message| %>
@@ -20,6 +20,18 @@
   </div>
 
   <%= debug(params) if Rails.env.development? %>
+
+<!--
+      <%= form_tag( user_articles_path, :method => 'get', class: 'navbar-form navbar-left' ) do %>
+        <div class='form-group'>
+        <%= text_field_tag :query, params[:query], id: "navbar-search-input", class: 'form-control', placeholder: 'User name.....' %>  
+        </div>
+        <div class="results"></div>
+         <%= button_tag(type: 'submit', id: 'navbar-search-btn', class: 'btn btn-default') do %>
+           <i class='fa fa-search fa-fw'></i> Search
+         <% end %>  
+      <% end %>
+-->
 
 </body>
 </html>

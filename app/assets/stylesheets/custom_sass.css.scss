@@ -5,7 +5,7 @@
 body {
   padding-top: 10px;
   background-color: #111111;
-  color: #C8C8C8
+  color: #C8C8C8;
   //margin-bottom: 60px;
 }
 
@@ -138,6 +138,59 @@ input {
     border-bottom: 1px solid $gray-lighter;
   }
 }
+
+/* User auto complete field */
+.user-search input {
+  width: 100%;
+  font-size: 1em;
+  padding: .5em 1.3em;
+  //background: transparent;
+  border: 1px solid #ddd;
+  //border-radius: 2em;
+}
+
+.user-search input:focus {
+  border-color: #A5CEF5;
+}
+
+
+.user-search .results .ui-widget-content {
+  background: #fff;
+  font-size: .9em;
+  padding: .5em 0;
+  border-color: #ddd;
+  box-shadow: 0 .1em .2em rgba(187, 187, 187, 0.34);
+  line-height: 1.2;
+  max-height: 20em;
+  overflow: hidden;
+  overflow-y: auto;
+  color: black;
+}
+
+
+.user-search .results .ui-menu-item {
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  padding: .4em .6em .4em 3.2em;
+  position: relative;
+  border: 0;
+  border-left: 5px solid transparent;
+  position: relative;
+  height: 1.5em;
+}
+
+.user-search .results .ui-state-focus {
+  background: #fff;
+  border-left-color: #08c;
+  font-weight: 300;
+}
+
+.user-search .results .ui-menu-item .userResult {
+  display: block;
+  color: #333;
+}
+
+
+
 
 
 

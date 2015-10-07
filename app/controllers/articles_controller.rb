@@ -1,10 +1,11 @@
 class ArticlesController < ApplicationController
   before_action :logged_in_user,        only: [:create, :edit, :update, :destroy]
   before_action :correct_user_or_admin, only: [:edit, :update, :destroy]
-
-  autocomplete :user, :name
   
   def articles_by_user
+    # careful! might be more than one user!
+    @userToShow = User.find_by(name: params[:username])
+    @articles = @userToShow.articles
     puts "Atricles_by_user called!"
   end
 
