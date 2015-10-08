@@ -9,8 +9,8 @@
     </section>
   </aside>
   <div class="col-md-8">
-    <% if @user.articles.any? %>      
-      <h4>articles (<%= @user.articles.count %>)</h4>
+    <% if @articles.any? %>      
+      <h4>articles (<%= @articles.count %>)</h4>
       <%= will_paginate @articles%> 
       <ol>
         <% @articles.each do |article| %>
@@ -24,7 +24,3 @@
   </div>
 </div>
 
-<!--
-<p>User: <%= @user.name %></p>
-<p>email: <%= @user.email %></p>
--->

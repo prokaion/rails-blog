@@ -6,7 +6,10 @@ class ArticlesController < ApplicationController
     # careful! might be more than one user!
     @userToShow = User.find_by(name: params[:username])
     @articles = @userToShow.articles
-    puts "Atricles_by_user called!"
+    #show only published articles if guest or not owner and not admin!
+    if( current_user == nil || @user != current_user && !current_user.admin?)      
+      @articles = remove_unpublished_articles(@articles)
+    end
   end
 
 	def index
@@ -14,7 +17,11 @@ class ArticlesController < ApplicationController
       @user = current_user
       @articles = current_user.articles
     else
-		  @articles = Article.all
+      @articles = Article.all
+    end
+    #show only published articles if guest or not owner and not admin!
+    if( current_user == nil || @user != current_user && !current_user.admin?)      
+      @articles = remove_unpublished_articles(@articles)
     end
 	end
 	
@@ -60,7 +67,7 @@ class ArticlesController < ApplicationController
 
 	private
 	  def article_params
-	    params.require(:article).permit(:title, :text)
+	    params.require(:article).permit(:title, :text, :published)
 	  end
 
     def user_param_and_current_user_present

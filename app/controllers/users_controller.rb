@@ -21,6 +21,11 @@ class UsersController < ApplicationController
 	def show
 		@user = User.find(params[:id])	
     @articles = @user.articles.paginate(page: params[:page])
+  
+    #show only published articles if guest or not owner and not admin!
+    if( current_user == nil || @user != current_user && !current_user.admin?)      
+      @articles = remove_unpublished_articles(@articles)
+    end
 	end
 
   def new
