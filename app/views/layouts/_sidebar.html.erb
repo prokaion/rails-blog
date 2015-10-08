@@ -4,7 +4,7 @@
   });
 </script>
 
-<div class="fixed">
+<div class="">
   <p>
     <h1>SIDEBAR</h1>
     <p><%= link_to "All articles", controller: 'articles' %></p>
@@ -12,9 +12,10 @@
       <p><%= link_to "My Articles", controller: 'articles', :user => current_user%></p>
     <% end %>
     </p>
-    Articles by:</br>
+  
+    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Articles by:</br>
     <div class="user-search">
-      <%= form_tag( user_articles_path, :method => 'get' ) do %>
+      <%= form_tag( user_articles_path, :method => 'get' ) do %>      
       <%= text_field_tag :username, params[:username], id: "user-search-txt", placeholder: 'User name.....' %>
       <!--<input type="text" id="user-search-txt", name="username", value="x", autofocus>-->
       <div class="results" id="user-search-results"></div>

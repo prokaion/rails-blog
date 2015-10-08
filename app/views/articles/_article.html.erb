@@ -3,34 +3,25 @@
     <header>
       <h2>
         <%=link_to article.title, article_path(article) %> 
+        <% if !article.published? %>
+          (Draft)
+        <% end %>
       <h2>
     </header>
     <div>
         <p><%= simple_format(article.text) %></p>
     </div>
   </div>
-  <footer>
+  
+  <%= render 'article_footer', :article => article %>
 
-    <% if(logged_in? && (current_user.admin? || current_user?(article.user))) %>  
-    <span><%= link_to 'Edit', edit_article_path(article) %></span> 
-    |
-    <span><%= link_to 'Destroy',  article_path(article),
-                                  method: :delete,
-                                  data: { confirm: 'Are you sure?' } %>
-    </span>&nbsp;&nbsp;&nbsp;&nbsp;
-    <% end %>
-    <span>posted by: <%= link_to article.user.name, article.user %></span>
-    <span class="timestamp">&nbsp;&nbsp;&nbsp;&nbsp;
-      created at <%= time_ago_in_words(article.created_at) %> ago.
-    </span>
-  </footer>
-<% if article.comments.count > 0 %>
-  <h4>Comments:</h4>
-<% end %>
-<%= render article.comments %>
-<% if logged_in? %> 
-  <%= render 'comments/comment_form', :article => article %>
-<% end%>
+  <% if article.comments.count > 0 %>
+    <h4>Comments:</h4>
+  <% end %>
+  <%= render article.comments %>
+  <% if logged_in? %> 
+    <%= render 'comments/comment_form', :article => article %>
+  <% end%>
 </article>
 </br>
 

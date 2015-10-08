@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<div class="">
 <%= form_for @article do |f| %>
  
   <% if @article.errors.any? %>
@@ -24,12 +25,14 @@
     <%= f.label :text %><br>
     <%= f.text_area :text, cols: 80, rows: 15 %>
   </p>
+    <div class="col-md-8">
     <%= f.label :remember_me, class: "checkbox inline" do %>
       <%= f.check_box :published %> Publish this article
     <% end %>
-  
-  <p>
+  </div>
+  <div>
     <%= f.submit yield(:title), class: "btn btn-primary" %>
-  </p>
+  </div>
  
 <% end %>
+</div>
