@@ -1,19 +1,19 @@
 <div class="comment">
-  <div class="content">
-    <p>
-      <strong>Commenter:</strong>
-      <%= comment.commenter %>
-    </p>
 
-    <p>
-      <strong>Comment:</strong>
-      <%= simple_format(comment.body) %>
-    </p>
-    <% if admin_user? %>
-      <%= link_to 'Destroy Comment', [comment.article, comment],
-                  method: :delete,
-                  data: { confirm: 'Are you sure?' } %>
-    <% end %>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>&nbsp;&nbsp;&nbsp;&nbsp;
+
+      <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+      created at <%= time_ago_in_words(comment.created_at) %> ago.
+
+  <div id="comment-content">
+    <%= simple_format(comment.body) %>
   </div>
+  <% if admin_user? %>
+    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+    <%= link_to 'Destroy Comment', [comment.article, comment],
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+  <% end %>
 </div>
 <br>

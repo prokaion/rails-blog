@@ -15,8 +15,12 @@
       <ol>
         <% @articles.each do |article| %>
           <li>
-            <%= link_to article.title, article %>
-          </li>
+            <% if article.published? %>
+              <%= link_to article.title, article %>
+            <% else %>
+              <%= link_to article.title + " (unpublished)", article, class: 'draft-link'%>
+            <% end %>
+          </li>          
         <% end %>
       </ol>
       <%= will_paginate @articles%> 

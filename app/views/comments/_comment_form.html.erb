@@ -8,7 +8,7 @@
     <%= f.hidden_field(:commenter, value: current_user.name)%>
     </p>
     <p>    
-      <%= f.text_area :body %>
+      <%= f.text_area :body, class: 'form-control' %>
     </p>
     <p>
       <%= f.submit class: "btn btn-primary" %>

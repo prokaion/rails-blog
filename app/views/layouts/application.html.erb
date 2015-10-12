@@ -6,21 +6,21 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>  
+<body>
+  <div id="main-container" class="container">  
     
-  <%= render 'layouts/header' %>
-
-  <div id="main-container" class="container"> 
+    <%= render 'layouts/header' %>
 
     <div class="row">
-      <div class="col-md-3 fixed">
+      <div id="menu" class="col-md-3">
         <%= render 'layouts/sidebar' %> 
       </div>
-      <div class="col-md-8">
+      <div id="contents" class="col-md-8">
         <%= render 'layouts/content' %>
       </div>
     </div>
   </div>
+  
   <%= debug(params) if Rails.env.development? %>
 
 </body>

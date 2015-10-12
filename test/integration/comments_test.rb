@@ -11,13 +11,13 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should not show comment-form if not logged in" do    
     get articles_path
-    assert_select 'form', count: 0
+    assert_select 'form#new_comment', count: 0
   end
 
   test "should show comment-form if logged in" do
     log_in_as(@user)
     get articles_path
-    assert_select 'form', count: Article.all.count
+    assert_select 'form#new_comment', count: Article.all.count
   end
 
   test "should be admin to see destroy link on comments" do

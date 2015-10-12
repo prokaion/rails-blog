@@ -1,27 +1,42 @@
 <article>
-  <div class="content">
+  <div id="article-header">
     <header>
-      <h2>
-        <%=link_to article.title, article_path(article) %> 
+      <h4 ><%=link_to article.title, article_path(article) %><h4>
         <% if !article.published? %>
-          (Draft)
+          <span class="draft-link">(Draft: not published yet)
+          <%= form_for article do |f| %>
+            <%= f.label 'bla', class: "checkbox inline" do %>
+            <%= f.check_box :published, { :onclick => "$(this.form).submit();" } %>
+            <% end%>
+          <% end %>
+          </span>
         <% end %>
-      <h2>
+      
     </header>
-    <div>
-        <p><%= simple_format(article.text) %></p>
-    </div>
+  </div>
+  <div id="article-content">
+      <p><%= simple_format(article.text) %></p>
   </div>
   
-  <%= render 'article_footer', :article => article %>
-
-  <% if article.comments.count > 0 %>
-    <h4>Comments:</h4>
-  <% end %>
-  <%= render article.comments %>
-  <% if logged_in? %> 
-    <%= render 'comments/comment_form', :article => article %>
-  <% end%>
+  <%= render 'articles/article_footer', :article => article %>
+  
+  <div id="comments">
+    <% if article.comments.count > 0 %>
+      <h4><a data-toggle="collapse" href="#collapse-target">Comments:</a></h4>
+    <% end %>
+    
+    <% if @comment != nil && @comment.errors.any? %>
+      <div id="collapse-target" class="collapse in">
+    <% else %>
+      <div id="collapse-target" class="collapse">
+    <% end %>
+    
+      <%= render article.comments %>
+      <% if logged_in? %> 
+        <%= render 'comments/comment_form', :article => article %>
+      <% end%>
+    </div>
+  </div>  
 </article>
 </br>
 

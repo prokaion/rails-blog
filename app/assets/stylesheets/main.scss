@@ -1,0 +1,88 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/* universal */
+body {
+  padding-top: 60px;
+  background-color: #111111;
+  color: #C8C8C8;
+  //margin-bottom: 60px;
+}
+
+.center {
+  text-align: center;
+}
+
+#header {
+  padding-right: 10px;
+}
+
+#menu {
+  background-color: #202020;
+  padding-bottom: 20px;
+}
+
+#contents {
+  //margin-right: 50px;
+}
+
+.content-background {
+  overflow:hidden;	
+	padding: 0px 0px 10px 50px;
+}
+
+footer {
+	background-color: #202020;
+	padding: 10px 10px 5px 20px;
+  font-size: 96%;
+}
+
+.draft-link {
+  color: red;
+}
+
+/* mixins, variables, etc. */
+
+$gray-medium-light: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+  background-color:   $gray-medium-light;
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+/* forms */
+
+textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  color: #101010; 
+  @include box_sizing;
+}
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}

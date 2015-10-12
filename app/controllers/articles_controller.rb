@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :logged_in_user,        only: [:create, :edit, :update, :destroy]
+  before_action :logged_in_user,        only: [:new, :create, :edit, :update, :destroy]
   before_action :correct_user_or_admin, only: [:edit, :update, :destroy]
   
   def articles_by_user

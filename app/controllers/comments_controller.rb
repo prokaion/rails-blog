@@ -13,7 +13,9 @@ class CommentsController < ApplicationController
 
   def create
     @article = Article.find(params[:article_id])
-    @comment = @article.comments.build(comment_params)
+    @comment = Comment.new(comment_params) #@article.comments.build(comment_params)
+    @comment.article_id = @article.id
+    puts @comment.article_id
     if @comment.save
       flash[:success] = "Comment created!"
       redirect_to article_path(@article)
@@ -25,7 +27,12 @@ class CommentsController < ApplicationController
   def destroy
     @article = Article.find(params[:article_id])
     @comment = @article.comments.find(params[:id])
-    @comment.destroy
+    if @comment 
+      @comment.destroy
+      flash[:success] = "Comment deleted!"
+    else
+      flash[:warning] = "Comment was not found!"
+    end
     redirect_to article_path(@article)
   end
  

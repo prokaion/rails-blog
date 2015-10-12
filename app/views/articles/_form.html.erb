@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<div class="">
+
 <%= form_for @article do |f| %>
  
   <% if @article.errors.any? %>
     <div id="error_explanation">
-      <h2>
+      <h4>
         <%= pluralize(@article.errors.count, "error") %> prohibited
         this article from being saved:
-      </h2>
+      </h4>
       <ul>
         <% @article.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -18,21 +18,22 @@
  
   <p>
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control' %>
   </p>
  
-  <p>
     <%= f.label :text %><br>
-    <%= f.text_area :text, cols: 80, rows: 15 %>
-  </p>
-    <div class="col-md-8">
-    <%= f.label :remember_me, class: "checkbox inline" do %>
+    <%= f.text_area :text, cols: 80, rows: 15, class: 'form-control' %>
+
+  <div>
+    <div style="float: left;">
+    <%= f.label :published do %>
       <%= f.check_box :published %> Publish this article
     <% end %>
-  </div>
-  <div>
-    <%= f.submit yield(:title), class: "btn btn-primary" %>
+    </div>
+    <span id="article-form-button">
+      <%= f.submit yield(:title), class: "btn btn-primary" %>
+    </span>
   </div>
  
 <% end %>
-</div>
+

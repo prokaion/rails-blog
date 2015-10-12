@@ -13,10 +13,10 @@
     <% end %>
     </p>
   
-    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Articles by:</br>
+    <span class="glyphicon glyphicon-search" aria-hidden="true"> </span> Articles by:</br>
     <div class="user-search">
       <%= form_tag( user_articles_path, :method => 'get' ) do %>      
-      <%= text_field_tag :username, params[:username], id: "user-search-txt", placeholder: 'User name.....' %>
+      <%= text_field_tag :username, params[:username], id: "user-search-txt", placeholder: 'User name.....', class: 'form-control' %>
       <!--<input type="text" id="user-search-txt", name="username", value="x", autofocus>-->
       <div class="results" id="user-search-results"></div>
       <!--<%= button_tag(type: 'submit')%>-->
