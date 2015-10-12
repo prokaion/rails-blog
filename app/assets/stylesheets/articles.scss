@@ -12,6 +12,23 @@ article {
   padding: 1px 10px 1px 20px;
 }
 
+.article-header-container {
+  vertical-align: bottom;
+}
+
+.article-header-container span {   
+  display: inline-block;  
+}
+.article-header-container .title {
+  font-size:160%;
+  width: 50%;  
+}
+
+.article-header-container .draft {
+  width: 20%;
+}
+
+
 #article-content {
 	background-color: #282828;
 	padding: 1px 10px 10px 20px;

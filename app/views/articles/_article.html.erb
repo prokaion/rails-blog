@@ -1,19 +1,23 @@
+
 <article>
   <div id="article-header">
-    <header>
-      <h4 ><%=link_to article.title, article_path(article) %><h4>
-        <% if !article.published? %>
-          <span class="draft-link">(Draft: not published yet)
-          <%= form_for article do |f| %>
-            <%= f.label 'bla', class: "checkbox inline" do %>
-            <%= f.check_box :published, { :onclick => "$(this.form).submit();" } %>
-            <% end%>
-          <% end %>
-          </span>
-        <% end %>
+    <div class="article-header-container">
+      <span class="title"><%= link_to article.title, article_path(article) %></span>
       
-    </header>
+      <% if !article.published? %>  
+        <span class="draft draft-link">(Draft: unpublished)</span>
+        <span class="draft-link">
+
+          <%= form_for article do |f| %>
+            
+            <%= f.check_box :published, { :onclick => "$(this.form).submit();" } %> publish now!
+
+          <% end %>
+        </span>
+      <% end %>
+    </div>
   </div>
+
   <div id="article-content">
       <p><%= simple_format(article.text) %></p>
   </div>
