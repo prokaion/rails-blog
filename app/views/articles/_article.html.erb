@@ -1,6 +1,6 @@
 
 <article>
-  <div id="article-header">
+  <div class="article-header">
     <div class="article-header-container">
       <span class="title"><%= link_to article.title, article_path(article) %></span>
       
@@ -18,32 +18,13 @@
     </div>
   </div>
 
-  <div id="article-content">
+  <div class="article-content">
       <p><%= simple_format(article.text) %></p>
   </div>
   
   <%= render 'articles/article_footer', :article => article %>
   
-  <div id="comments">
-    <h4>Comments:</h4>
-    <% if article.comments.count > 0 %>
-      <a data-toggle="collapse" href="#collapse-target">-->:</a>
-    <% end %>
-    
-    <% if @comment != nil && @comment.errors.any? %>
-      <div id="collapse-target" class="collapse in">
-    <% else %>
-      <div id="collapse-target" class="collapse">
-    <% end %>
-    
-    <%= render article.comments %>
-
-    <% if logged_in? %> 
-      <%= render 'comments/comment_form', :article => article %>
-    <% end%>
-      
-    </div>
-  </div>  
+  <%= render 'comments/comments', :article => article %>  
 </article>
 </br>
 
