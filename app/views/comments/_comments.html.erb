@@ -1,11 +1,10 @@
 <div class="comments">
   <h4>Comments:</h4>
-  <% if article.comments.count > 0 %>
 
     <a data-toggle="collapse" href="<%= "#collapse-target_#{article.id}" %>">
       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
     </a>
-  <% end %>
+
   
   <% if @comment != nil && @comment.errors.any? %>
     <div id="<%= "collapse-target_#{article.id}" %>" class="collapse in">
@@ -17,8 +16,9 @@
       <%= render 'comments/comment', :comment => comment %>
     <% end %>
 
-  </div>
     <% if logged_in? %> 
       <%= render 'comments/comment_form', :article => article %>
     <% end%> 
+
+  </div>
 </div>
