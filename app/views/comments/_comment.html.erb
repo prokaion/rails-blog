@@ -5,7 +5,7 @@
 
       <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
 
-      <%= time_ago_in_words(comment.created_at) %>
+      created <%= time_ago_in_words(comment.created_at) %> ago.
 
   <div class="comment-content">
     <%= simple_format(comment.body) %>
