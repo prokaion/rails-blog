@@ -1,0 +1,10 @@
+Hello!
+<% provide(:title, 'Save new category') %>
+<%= form_for @category do |f| %>
+
+  <%= f.label :cat_name %><br>
+  <%= f.text_field :cat_name, class: 'form-control' %>
+
+  <%= f.submit yield(:title), class: "btn btn-primary" %>
+
+<% end %>

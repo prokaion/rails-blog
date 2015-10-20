@@ -27,6 +27,7 @@ class ArticlesController < ApplicationController
 	
 	def show
     @article = Article.find(params[:id])
+    puts @article.categories.map{|cat| cat.id}
   end
 
 	def new
@@ -35,6 +36,7 @@ class ArticlesController < ApplicationController
 	
 	def edit
 	  @article = Article.find(params[:id])
+    @chosen_cats = @article.categories.map{ |cat| cat.id }
 	end	
 	
 	def create
@@ -50,7 +52,22 @@ class ArticlesController < ApplicationController
   
 	def update
 	  @article = Article.find(params[:id])
-	 
+
+    # 1) check for any differences in article.categories and selected_categories
+    if( !params[:article][:categories] == nil)
+      selected_categories = Category.find(params[:article][:categories])
+      # 2) get all categories
+      categories = Category.all
+
+    
+      # add each category which is not already in article
+      selected_categories.each do |category|
+        if !@article.categories.include?(category)
+          @article.categories << category
+        end
+      end
+    end
+
 	  if @article.update(article_params)
 		  redirect_to @article
 	  else
@@ -67,7 +84,7 @@ class ArticlesController < ApplicationController
 
 	private
 	  def article_params
-	    params.require(:article).permit(:title, :text, :published)
+	    params.require(:article).permit(:categories, :title, :text, :published)
 	  end
 
     def user_param_and_current_user_present
