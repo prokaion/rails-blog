@@ -16,11 +16,32 @@
     <span class="glyphicon glyphicon-search" aria-hidden="true"> </span> Articles by:</br>
     <div class="user-search">
       <%= form_tag( user_articles_path, :method => 'get' ) do %>      
-      <%= text_field_tag :username, params[:username], id: "user-search-txt", placeholder: 'User name.....', class: 'form-control' %>
-      <!--<input type="text" id="user-search-txt", name="username", value="x", autofocus>-->
-      <div class="results" id="user-search-results"></div>
-      <!--<%= button_tag(type: 'submit')%>-->
+        <%= text_field_tag :username, params[:username], id: "user-search-txt", placeholder: 'User name.....', class: 'form-control' %>
+
+        <div class="results" id="user-search-results"></div>
+
       <% end %>
     </div>
+    <hr></hr>
+    <h4>Categories:</h4>
+
+    <% if( logged_in? && current_user.admin? ) %>
+      <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+      <%= link_to "Add new category", new_category_path %>
+    <% end %>
+    </br></br>
+
+    <ul class="list-group">
+      <% Category.all.each do |category| %>
+        <li class="list-group-item">
+          <span class="badge"><%= category.articles.count %></span>
+          <%= link_to category.cat_name, category %> 
+        </li>
+      <% end %>
+    </ul>
+
+    <hr></hr>
+
+    <%= link_to "All categories", controller: 'categories' %>
 
 </div>

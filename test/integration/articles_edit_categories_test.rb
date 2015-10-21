@@ -91,4 +91,22 @@ class ArtticlesEditTest < ActionDispatch::IntegrationTest
     @article.reload
     assert_same(0, @article.categories.count)
   end
+
+  test "what_happens_if_non_empty_category_is_deleted" do
+    @article.categories = [categories(:cat_one), categories(:cat_two)]
+    @article.save
+    @article.reload
+    assert_same(2, @article.categories.count)
+
+    # start test
+    assert_difference('Category.count', -1) do
+      delete category_path(categories(:cat_two))
+    end
+
+    @article.reload
+    assert_not_nil(@article, "article should still exist!")
+
+    assert_same(1, @article.categories.count)
+    assert_same(categories(:cat_one).id, @article.categories[0].id)
+  end
 end

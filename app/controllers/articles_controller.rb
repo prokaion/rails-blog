@@ -43,7 +43,7 @@ class ArticlesController < ApplicationController
 	  @article = current_user.articles.build(article_params)
  
     add_remove_categories(params[:article][:categories])
-    
+
 	  if @article.save
       flash[:success] = "Article created!"
 		  redirect_to @article
@@ -97,13 +97,9 @@ class ArticlesController < ApplicationController
 
       # 1) check for any differences in article.categories and selected_category_ids
       if( selected_category_ids.sort != @article.category_ids.sort)
+        
+        @article.category_ids=(selected_category_ids)
 
-        # 2) get all categories and remove all which are not in selected_category_ids
-        categories = Category.all.to_a
-        
-        categories.keep_if { |category| selected_category_ids.include?(category.id) }
-        
-        @article.categories=(categories)
       end 
     end
 end

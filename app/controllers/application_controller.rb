@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include ArticlesHelper
 
-  ALL_USERS = User.all
+  #all_categories = Category.all
 
   private
     # Confirms a logged-in user.
