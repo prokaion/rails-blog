@@ -1,6 +1,6 @@
-class CreateCatecories < ActiveRecord::Migration
+class CreateCategories < ActiveRecord::Migration
   def change
-    create_table :catecories do |t|
+    create_table :categories do |t|
       t.string :cat_name
 
       t.timestamps null: false

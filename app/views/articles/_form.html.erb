@@ -28,7 +28,7 @@
     <%= f.label 'Category:' + @chosen_cats.to_s %>
 
     <%= f.collection_select(:categories, Category.all, :id, :cat_name, {:selected => @chosen_cats,
-                             include_hidden: false}, {class: 'form-control', :multiple => true}) %>
+                             include_hidden: false, :include_blank => true}, {class: 'form-control', :multiple => true}) %>
 
     
 

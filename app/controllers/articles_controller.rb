@@ -42,6 +42,8 @@ class ArticlesController < ApplicationController
 	def create
 	  @article = current_user.articles.build(article_params)
  
+    add_remove_categories(params[:article][:categories])
+    
 	  if @article.save
       flash[:success] = "Article created!"
 		  redirect_to @article
@@ -52,21 +54,8 @@ class ArticlesController < ApplicationController
   
 	def update
 	  @article = Article.find(params[:id])
-
-    # 1) check for any differences in article.categories and selected_categories
-    if( !params[:article][:categories] == nil)
-      selected_categories = Category.find(params[:article][:categories])
-      # 2) get all categories
-      categories = Category.all
-
     
-      # add each category which is not already in article
-      selected_categories.each do |category|
-        if !@article.categories.include?(category)
-          @article.categories << category
-        end
-      end
-    end
+    add_remove_categories(params[:article][:categories])
 
 	  if @article.update(article_params)
 		  redirect_to @article
@@ -97,5 +86,24 @@ class ArticlesController < ApplicationController
         flash[:danger] = "You dont have permissions to do that!"
         redirect_to @article
       end
+    end
+
+    def add_remove_categories(category_params)
+      selected_category_ids = []
+
+      if( category_params != nil )
+        selected_category_ids = category_params.map(&:to_i)
+      end
+
+      # 1) check for any differences in article.categories and selected_category_ids
+      if( selected_category_ids.sort != @article.category_ids.sort)
+
+        # 2) get all categories and remove all which are not in selected_category_ids
+        categories = Category.all.to_a
+        
+        categories.keep_if { |category| selected_category_ids.include?(category.id) }
+        
+        @article.categories=(categories)
+      end 
     end
 end
