@@ -6,7 +6,9 @@
  (<%= @articles.count %>)
 </h2>
 
+  <%= will_paginate @articles%>
   <%= render @articles %>
+  <%= will_paginate %>
 
 
 

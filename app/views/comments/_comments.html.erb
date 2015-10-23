@@ -1,8 +1,9 @@
+
 <div class="comments">
   <h4>Comments:</h4>
 
     <a data-toggle="collapse" href="<%= "#collapse-target_#{article.id}" %>">
-      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      <span id="<%= "collapse-source_#{article.id}" %>" class="glyphicon glyphicon-plus-sign" aria-hidden="true" onclick="toggle_glyph(this.id)"></span>
     </a>
 
   

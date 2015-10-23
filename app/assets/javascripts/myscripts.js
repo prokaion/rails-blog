@@ -36,3 +36,12 @@ app.Users.prototype = {
   }
 }; /* end autocomplete User search */
 
+
+function toggle_glyph(id) {
+    var e = document.getElementById(id);
+    if(e.className == 'glyphicon glyphicon-plus-sign')         
+      e.className = 'glyphicon glyphicon-minus-sign';
+    else
+      e.className = 'glyphicon glyphicon-plus-sign';
+}
+

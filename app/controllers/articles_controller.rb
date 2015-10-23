@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
       @user = current_user
       @articles = current_user.articles
     else
-      @articles = Article.all
+      @articles = Article.paginate( page: params[:page], :per_page => 10 )
     end
     #show only published articles if guest or not owner and not admin!
     if( current_user == nil || @user != current_user && !current_user.admin?)      
