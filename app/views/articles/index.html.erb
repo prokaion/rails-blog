@@ -6,9 +6,9 @@
  (<%= @articles.count %>)
 </h2>
 
-  <%= will_paginate @articles%>
-  <%= render @articles %>
-  <%= will_paginate %>
+<%= will_paginate @articles, {:class => 'apple_pagination'} %>
+<%= render @articles %>
+<%= will_paginate @articles, {:class => 'apple_pagination'} %>
 
 
 

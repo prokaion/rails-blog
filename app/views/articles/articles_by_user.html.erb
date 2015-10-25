@@ -1,4 +1,8 @@
 <h3>Articles by <%= @userToShow.name %> (<%= @articles.count %>): </h3>
 <p>
+  <%= will_paginate @articles, {:class => 'apple_pagination'} %>
+
   <%= render @articles %>
+  
+  <%= will_paginate @articles, {:class => 'apple_pagination'} %>
 </p>

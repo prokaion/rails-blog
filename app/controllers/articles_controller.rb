@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   def articles_by_user
     # careful! might be more than one user!
     @userToShow = User.find_by(name: params[:username])
-    @articles = @userToShow.articles
+    @articles = Article.paginate( page: params[:page], :per_page => 10).where(user_id: @userToShow.id) 
     #show only published articles if guest or not owner and not admin!
     if( current_user == nil || @user != current_user && !current_user.admin?)      
       @articles = remove_unpublished_articles(@articles)
@@ -15,9 +15,9 @@ class ArticlesController < ApplicationController
 	def index
     if (user_param_and_current_user_present && params[:user] == current_user.id.to_s)
       @user = current_user
-      @articles = current_user.articles
+      @articles = Article.paginate( page: params[:page], :per_page => 10).where(user_id: current_user.id) 
     else
-      @articles = Article.paginate( page: params[:page], :per_page => 10 )
+      @articles = Article.paginate( page: params[:page], :per_page => 10)
     end
     #show only published articles if guest or not owner and not admin!
     if( current_user == nil || @user != current_user && !current_user.admin?)      
