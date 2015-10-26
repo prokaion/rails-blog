@@ -10,5 +10,13 @@ class Article < ActiveRecord::Base
   validates :text, length: { minimum: 6, maximum: 10000 }
   validates :user_id, presence: true
 
+  before_save :set_published_at_if_published
+
+  private
+    def set_published_at_if_published
+        if( self.published? )
+          self.published_at = Time.now
+        end
+    end
 
 end
