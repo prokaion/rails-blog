@@ -1,3 +1,9 @@
+
+/* Overwrite bootstrap variables */
+
+$body-bg: #111111;
+$text-color: #C8C8C8;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -8,23 +14,26 @@ $font-color: #C8C8C8;
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
   box-sizing:         border-box;
-  padding: 50px 60px 50px 110px;
+  padding: 50px 60px 50px 90px;
 }
 
 /* global stuff */
 body {
     padding-top: 50px;
-    color: $font-color;
-    background-color: #111111;    
+    //color: $font-color;
+    //background-color: #111111;    
     font-family: Georgia, serif;
-    font-size: 1vw;   
+    font-size: $font-size-large;   
 }
 
 #menu {
     background-color: #202020;
-    min-height: 700px;
+    min-height: 800px;
     @include box_sizing;
-    //padding-left: 100px;
+}
+
+.center {
+  text-align: center;
 }
 
 /* elements */
