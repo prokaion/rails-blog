@@ -1,0 +1,42 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/* variables, mixins */
+$font-color: #C8C8C8;
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+  padding: 50px 60px 50px 110px;
+}
+
+/* global stuff */
+body {
+    padding-top: 50px;
+    color: $font-color;
+    background-color: #111111;    
+    font-family: Georgia, serif;
+    font-size: 1vw;   
+}
+
+#menu {
+    background-color: #202020;
+    min-height: 700px;
+    @include box_sizing;
+    //padding-left: 100px;
+}
+
+/* elements */
+h1, h2, h3, h4 { 
+    font-family: Arial; 
+}
+
+a {
+    color: $font-color;
+    &:hover {
+      color: darken($font_color, 20%);
+      text-decoration: none;
+    }
+}
+
