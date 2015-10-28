@@ -4,44 +4,44 @@
   });
 </script>
 
-<div class="">
   <p>
-    <h1>SIDEBAR</h1>
-    <p><%= link_to "All articles", controller: 'articles' %></p>
-    <% if current_user %>                
-      <p><%= link_to "My Articles", controller: 'articles', :user => current_user%></p>
-    <% end %>
-    </p>
+    <h2><strong><%= link_to blog_name, controller: 'welcome' %></strong></h2>
+    <h3><%= link_to 'About', controller: 'welcome' %></h3>
+  </p></br>
+  <%= link_to "All articles", controller: 'articles' %></br></br>
+
+  <% if current_user %>                
+    <%= link_to "My Articles", controller: 'articles', :user => current_user%></br></br>
+  <% end %>
   
-    <span class="glyphicon glyphicon-search" aria-hidden="true"> </span> Articles by:</br>
-    <div class="user-search">
-      <%= form_tag( user_articles_path, :method => 'get' ) do %>      
-        <%= text_field_tag :username, params[:username], id: "user-search-txt", placeholder: 'User name.....', class: 'form-control' %>
 
-        <div class="results" id="user-search-results"></div>
+  <span class="glyphicon glyphicon-search" aria-hidden="true"> </span> Articles by:</br>
+  <div class="user-search">
+    <%= form_tag( user_articles_path, :method => 'get' ) do %>      
+      <%= text_field_tag :username, params[:username], id: "user-search-txt", placeholder: 'User name.....', class: 'form-control' %>
 
-      <% end %>
-    </div>
-    <hr></hr>
-    <h4>Categories:</h4>
+      <div class="results" id="user-search-results"></div>
 
-    <% if( logged_in? && current_user.admin? ) %>
-      <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
-      <%= link_to "Add new category", new_category_path %>
     <% end %>
-    </br></br>
+  </div>
+  <hr></hr>
+  <h4>Categories:</h4>
 
-    <ul class="list-group">
-      <% Category.all.each do |category| %>
-        <li class="list-group-item">
-          <span class="badge"><%= category.articles.count %></span>
-          <%= link_to category.cat_name, category %> 
-        </li>
-      <% end %>
-    </ul>
+  <% if( logged_in? && current_user.admin? ) %>
+    <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+    <%= link_to "Add new category", new_category_path %>
+  <% end %>
+  </br></br>
 
-    <hr></hr>
+  <ul class="list-group">
+    <% Category.all.each do |category| %>
+      <li class="list-group-item">
+        <span class="badge"><%= category.articles.count %></span>
+        <%= link_to category.cat_name, category %> 
+      </li>
+    <% end %>
+  </ul>
 
-    <%= link_to "All categories", controller: 'categories' %>
+  <hr></hr>
 
-</div>
+  <%= link_to "All categories", controller: 'categories' %>

@@ -14,9 +14,9 @@ class Article < ActiveRecord::Base
 
   private
     def set_published_at_if_published
-        if( self.published? )
-          self.published_at = Time.now
-        end
+      if( self.published? )
+        self.published_at = Time.now
+      end
     end
 
 end

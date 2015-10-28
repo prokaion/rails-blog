@@ -1,2 +1,14 @@
-<h1>Hello Rails!</h1>
-<%= link_to 'My Blog', controller: 'articles' %>
+<div class="row">
+  <div class="col-md-11 col-md-offset-1">
+
+    <h1 class="center"><strong><%= link_to blog_name, controller: 'articles' %></strong></h1>
+
+    <h2 class="center"><strong>About</strong></h2>
+    </br>
+    <div class="article-content">
+      <%= simple_format( @article.text ) %>      
+    </div>
+
+  </div>
+</div>
+

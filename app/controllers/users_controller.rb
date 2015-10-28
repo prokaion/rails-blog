@@ -14,6 +14,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def check_for_duplicate_names
+    puts params[:term]
+    @user = User.find_by(name: params[:term])
+    if( @user )
+      render html: "<ul class='alert-color'><li>Name has already been taken</li></ul>".html_safe
+    else
+      render plain: ""
+    end          
+  end
+
 	def index
 		@users = User.paginate( page: params[:page]).where(activated: true) 
 	end

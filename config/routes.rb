@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post    'login'   =>  'sessions#create'
   delete  'logout'  =>  'sessions#destroy'
   get '/user_articles', to: 'articles#articles_by_user'
+  post '/check_for_duplicate_names', to: 'users#check_for_duplicate_names'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

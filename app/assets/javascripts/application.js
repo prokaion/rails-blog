@@ -15,5 +15,6 @@
 //= require jquery-ui
 //= require bootstrap
 //= require turbolinks
+//= require underscore-min
 //= require myscripts
 //= require_tree .

@@ -3,8 +3,10 @@
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', model: @user %>
 
+      <div id="result"></div>
+
       <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.text_field :name, class: 'form-control', id: 'name-input-box' %>      
 
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
@@ -20,3 +22,16 @@
     <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+/* check for duplicate user names */
+$('#name-input-box').keyup(_.debounce(doneTyping , 3000));
+
+//user is "finished typing," do something
+function doneTyping () {
+  
+  $.post('check_for_duplicate_names', { term: $('#name-input-box').val() }, function(data) {
+    $('#result').html(data);       
+  }); 
+}
+</script>
