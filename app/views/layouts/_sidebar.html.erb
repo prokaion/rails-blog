@@ -5,8 +5,9 @@
 </script>
 
   <p>
-    <h2><strong><%= link_to blog_name, controller: 'welcome' %></strong></h2>
-    <h3><%= link_to 'About', controller: 'welcome' %></h3>
+    <h1><strong><%= link_to blog_name, controller: 'welcome' %></strong></h1>
+    <hr></hr>
+    <h2><%= link_to 'About', controller: 'welcome' %></h2>
   </p></br>
   <%= link_to "All articles", controller: 'articles' %></br></br>
 
@@ -29,9 +30,9 @@
 
   <% if( logged_in? && current_user.admin? ) %>
     <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
-    <%= link_to "Add new category", new_category_path %>
+    <%= link_to "Add new category", new_category_path %></br>
   <% end %>
-  </br></br>
+  </br>
 
   <ul class="list-group">
     <% Category.all.each do |category| %>

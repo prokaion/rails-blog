@@ -1,35 +1,36 @@
-<!DOCTYPE html>
 
-<%= form_for @article do |f| %>
- 
-  <%= render 'shared/error_messages', model: @article %>
- 
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title, class: 'form-control' %>
-  </p>
- 
-    <%= f.label :text %><br>
-    <%= f.text_area :text, cols: 80, rows: 15, class: 'form-control' %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-1">
+    <%= form_for @article do |f| %>
+     
+      <%= render 'shared/error_messages', model: @article %>
+     
+      <p>
+        <%= f.label :title %><br>
+        <%= f.text_field :title, class: 'form-control' %>
+      </p>
+     
+        <%= f.label :text %><br>
+        <%= f.text_area :text, cols: 80, rows: 20, class: 'form-control' %>
 
-    
-    <%= f.label 'Category:' + @chosen_cats.to_s %>
+        
+        <%= f.label 'Category:' + @chosen_cats.to_s %>
 
-    <%= f.collection_select(:categories, Category.all, :id, :cat_name, {:selected => @chosen_cats,
-                             include_hidden: false, :include_blank => true}, {class: 'form-control', :multiple => true}) %>
-
-    
-
-  <div>
-    <div style="float: left;">
-    <%= f.label :published do %>
-      <%= f.check_box :published %> Publish this article
+        <%= f.collection_select(:categories, Category.all, :id, :cat_name, {:selected => @chosen_cats,
+                                 include_hidden: false, :include_blank => true}, {class: 'form-control', :multiple => true}) %>
+      </br>
+      <div>
+        <div style="float: left;">
+        <%= f.label :published do %>
+          <%= f.check_box :published %> Publish this article
+        <% end %>
+        </div>
+        <span id="article-form-button">
+          <%= f.submit yield(:title), class: "btn btn-primary" %>
+        </span>
+      </div>
+     
     <% end %>
-    </div>
-    <span id="article-form-button">
-      <%= f.submit yield(:title), class: "btn btn-primary" %>
-    </span>
   </div>
- 
-<% end %>
+</div>
 

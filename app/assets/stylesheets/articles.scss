@@ -1,40 +1,74 @@
 // Place all the styles related to the articles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "blog-main";
 
-/*
+$article-padding: 10px 10px 10px 30px;
+
 article {
-	
-}
+  @include box_sizing;
 
-.article-header {
-  background-color: #202023;
-  padding: 1px 10px 1px 20px;
-}
+    .article-header {
+      background-color: #202023;
+      //padding: 1px 10px 1px 20px;
+      padding: $article-padding;
 
-.article-header-container {
-  vertical-align: bottom;
-}
+      .article-header-container {    
+        vertical-align: bottom;
+        span {   
+          display: inline-block;  
+        }
+        .title {
+          font-size:160%;
+          width: 50%;  
+        }
+      }
+    }
 
-.article-header-container span {   
-  display: inline-block;  
-}
-.article-header-container .title {
-  font-size:160%;
-  width: 50%;  
-}
+    .article-content {
+      background-color: $lighter-bg2;
+      padding: $article-padding;
+      a {
+        text-decoration: underline;
+      }
+    }
 
-.article-header-container .draft {
-  width: 20%;
-}
+    footer {
+      background-color: $lighter-bg;
+      padding: $article-padding;
+      font-size: 96%;
+    }
 
-
-.article-content {
-	background-color: #282828;
-	padding: 1px 10px 10px 20px;
-}
 
 #article-form-button {
   margin-left: 20px;
+}    
+
+/* COMMENTS */
+    .comments {
+      background-color: #161515;
+      padding: 1px 15px 5px 20px;
+      font-size: 96%;
+      border-top: 1px solid #303030;
+      color: #808080;
+
+      .comment {  
+        margin-left: 25px;
+      }
+
+      .comment-content {
+        //box-sizing: padding-box;
+        border-style: solid;
+        border-width: thin;
+        border-color:        #373737;
+        background-color: #242424;
+        margin: 5px 0px 10px 0px;
+        padding: $article-padding;
+      }
+      
+    } 
+
 }
-*/
+
+
+

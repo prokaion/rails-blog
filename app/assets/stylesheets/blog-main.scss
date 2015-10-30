@@ -3,33 +3,44 @@
 
 $body-bg: #111111;
 $text-color: #C8C8C8;
+$font-size-base: 13px;
+$list-group-border: #404040;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
 /* variables, mixins */
 $font-color: #C8C8C8;
+$lighter-bg: #202020;
+$lighter-bg2: #292929;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
   box-sizing:         border-box;
-  padding: 50px 60px 50px 90px;
+  padding: 50px 60px 50px 60px;
 }
 
 /* global stuff */
 body {
-    padding-top: 50px;
-    //color: $font-color;
-    //background-color: #111111;    
+    padding-top: 50px;   
     font-family: Georgia, serif;
     font-size: $font-size-large;   
 }
 
+#header {
+  padding-right: 15px;
+}
+
 #menu {
-    background-color: #202020;
+    background-color: $lighter-bg;
     min-height: 800px;
     @include box_sizing;
+}
+
+#contents {
+    @include box_sizing;
+  //margin-top: 50px;
 }
 
 .center {
@@ -47,5 +58,28 @@ a {
       color: darken($font_color, 20%);
       text-decoration: none;
     }
+}
+
+hr {
+    border-color: #404040;
+}
+
+.list-group-item {
+  background-color: $lighter-bg;
+}
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
 }
 
