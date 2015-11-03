@@ -21,10 +21,15 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   resources :articles do
-    resources :comments    
+    resources :comments 
   end
+
   resources :users do
     get :autocomplete, :on => :collection
+
+    scope module: 'user_articles' do
+      resources :articles_by_user, only: [:index]
+    end 
   end
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]

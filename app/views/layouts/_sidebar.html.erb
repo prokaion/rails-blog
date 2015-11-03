@@ -5,14 +5,14 @@
 </script>
 
   <p>
-    <h1><strong><%= link_to blog_name, controller: 'welcome' %></strong></h1>
+    <h1><strong><%= link_to blog_name, welcome_index_path %></strong></h1>
     <hr></hr>
-    <h2><%= link_to 'About', controller: 'welcome' %></h2>
+    <h2><%= link_to 'About', controller: '/welcome' %></h2>
   </p></br>
-  <%= link_to "All articles", controller: 'articles' %></br></br>
+  <%= link_to "All articles", controller: '/articles' %></br></br>
 
   <% if current_user %>                
-    <%= link_to "My Articles", controller: 'articles', :user => current_user%></br></br>
+    <%= link_to "My Articles", user_articles_by_user_index_path(current_user) %></br></br>
   <% end %>
   
 
@@ -45,4 +45,4 @@
 
   <hr></hr>
 
-  <%= link_to "All categories", controller: 'categories' %>
+  <%= link_to "All categories", controller: '/categories' %>

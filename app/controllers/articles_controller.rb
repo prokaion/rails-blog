@@ -3,31 +3,27 @@ class ArticlesController < ApplicationController
   before_action :correct_user_or_admin, only: [:edit, :update, :destroy]
   
   def articles_by_user
-    # careful! might be more than one user!
     @userToShow = User.find_by(name: params[:username])
-    @articles = Article.paginate( page: params[:page], :per_page => 10).where(user_id: @userToShow.id) 
+    
     #show only published articles if guest or not owner and not admin!
     if( current_user == nil || @user != current_user && !current_user.admin?)      
-      @articles = remove_unpublished_articles(@articles)
+      @articles = Article.paginate( page: params[:page], :per_page => 10).where("user_id = #{@userToShow.id} and published = #{true}") 
+    else
+      @articles = Article.paginate( page: params[:page], :per_page => 10).where(user_id: @userToShow.id)
     end
   end
 
 	def index
-    if (user_param_and_current_user_present && params[:user] == current_user.id.to_s)
-      @user = current_user
-      @articles = Article.paginate( page: params[:page], :per_page => 10).where(user_id: current_user.id) 
+    #show only published articles if guest or not admin!
+    if( current_user == nil || !current_user.admin?)      
+      @articles = Article.paginate( page: params[:page], :per_page => 10).where(published: true) 
     else
       @articles = Article.paginate( page: params[:page], :per_page => 10)
-    end
-    #show only published articles if guest or not owner and not admin!
-    if( current_user == nil || @user != current_user && !current_user.admin?)      
-      @articles = remove_unpublished_articles(@articles)
     end
 	end
 	
 	def show
     @article = Article.find(params[:id])
-    puts @article.categories.map{|cat| cat.id}
   end
 
 	def new

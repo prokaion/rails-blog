@@ -40,11 +40,11 @@ article {
     }
 
 
-#article-form-button {
-  margin-left: 20px;
-}    
+    #article-form-button {
+      margin-left: 20px;
+    }    
 
-/* COMMENTS */
+    /* COMMENTS */
     .comments {
       background-color: #161515;
       padding: 1px 15px 5px 20px;
@@ -65,7 +65,7 @@ article {
         margin: 5px 0px 10px 0px;
         padding: $article-padding;
       }
-      
+
     } 
 
 }

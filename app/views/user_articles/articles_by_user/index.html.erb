@@ -1,0 +1,9 @@
+<h2>
+  All articles of <%= link_to @current_user.name, current_user %> (<%= @articles.count %>)
+</h2>
+
+<%= will_paginate @articles, {:class => 'apple_pagination'} %>
+  <% @articles.each do |article| %>
+    <%= render partial: "/articles/article", object: article %>
+  <% end %>
+<%= will_paginate @articles, {:class => 'apple_pagination'} %>
