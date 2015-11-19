@@ -19,7 +19,7 @@
   <span class="glyphicon glyphicon-search" aria-hidden="true"> </span> Articles by:</br>
   <div class="user-search">
     <%= form_tag( user_articles_path, :method => 'get' ) do %>      
-      <%= text_field_tag :username, params[:username], id: "user-search-txt", placeholder: 'User name.....', class: 'form-control' %>
+      <%= text_field_tag :user_name, params[:user_name], id: "user-search-txt", placeholder: 'User name.....', class: 'form-control' %>
 
       <div class="results" id="user-search-results"></div>
 
@@ -37,7 +37,7 @@
   <ul class="list-group">
     <% Category.all.each do |category| %>
       <li class="list-group-item">
-        <span class="badge"><%= category.articles.count %></span>
+        <span class="badge"><%= category.articles.published(true).count %></span>
         <%= link_to category.cat_name, category %> 
       </li>
     <% end %>
@@ -46,3 +46,17 @@
   <hr></hr>
 
   <%= link_to "All categories", controller: '/categories' %>
+  <hr></hr>
+  <h4><strong>RECENT POSTS</strong></h4><br>
+
+  <% @recent_articles = Article.most_recent %>
+  <% @recent_articles.each do |article| %>
+    <% title = "" %>
+    <% if article.title.length > 19 %>
+      <% title = article.title.slice(0, 18) + "..." %>
+    <% else %>
+      <% title = article.title %>
+    <% end %>
+    <%= link_to title, article %>
+    <hr></hr>
+  <% end %>

@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
     @article = Article.find(params[:article_id])
     @comment = Comment.new(comment_params) #@article.comments.build(comment_params)
     @comment.article_id = @article.id
-    puts @comment.article_id
+        
     if @comment.save
       flash[:success] = "Comment created!"
       redirect_to article_path(@article)

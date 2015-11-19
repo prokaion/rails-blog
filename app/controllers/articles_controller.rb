@@ -1,25 +1,15 @@
 class ArticlesController < ApplicationController
   before_action :logged_in_user,        only: [:new, :create, :edit, :update, :destroy]
   before_action :correct_user_or_admin, only: [:edit, :update, :destroy]
-  
-  def articles_by_user
-    @userToShow = User.find_by(name: params[:username])
-    
-    #show only published articles if guest or not owner and not admin!
-    if( current_user == nil || @user != current_user && !current_user.admin?)      
-      @articles = Article.paginate( page: params[:page], :per_page => 10).where("user_id = #{@userToShow.id} and published = #{true}") 
-    else
-      @articles = Article.paginate( page: params[:page], :per_page => 10).where(user_id: @userToShow.id)
-    end
-  end
 
 	def index
     #show only published articles if guest or not admin!
-    if( current_user == nil || !current_user.admin?)      
-      @articles = Article.paginate( page: params[:page], :per_page => 10).where(published: true) 
-    else
-      @articles = Article.paginate( page: params[:page], :per_page => 10)
-    end
+    filtered_params = {}
+    if( current_user == nil || !current_user.admin?)
+      filtered_params[:published] = true    
+    end 
+
+    @articles = Article.filter(filtered_params).paginate( page: params[:page], :per_page => 10)
 	end
 	
 	def show

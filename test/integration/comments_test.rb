@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CommentsControllerTest < ActionDispatch::IntegrationTest
+class CommentsTest < ActionDispatch::IntegrationTest
   self.use_transactional_fixtures = true
 
   def setup
@@ -17,7 +17,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   test "should show comment-form if logged in" do
     log_in_as(@user)
     get articles_path
-    assert_select 'form#new_comment', count: Article.all.count
+    assert_select 'form#new_comment', count: Article.published(true).count
   end
 
   test "should be admin to see destroy link on comments" do

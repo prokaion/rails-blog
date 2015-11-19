@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include Filterable
+
   has_many :articles, dependent: :destroy
   attr_accessor :remember_token, :activation_token, :reset_token
 	before_save   :downcase_email
@@ -11,6 +13,9 @@ class User < ActiveRecord::Base
 				uniqueness: { case_sensitive: false }
 	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true		
 	has_secure_password
+
+  default_scope -> {order( name: :asc )}
+  scope :user_name, -> (name) { where(name: name).first } #name is unique so this is single user always
 
   # Returns the hash digest of the given string.
   def User.digest(string)

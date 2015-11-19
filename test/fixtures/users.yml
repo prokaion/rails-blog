@@ -1,4 +1,4 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.htmll
 michael:
   name: Michael Example
   email: michael@example.com
@@ -9,7 +9,7 @@ michael:
 
 
 archer:
-  name: Sterling Archer
+  name: Archer
   email: duchess@example.gov
   password_digest: <%= User.digest('password') %>
   activated: true

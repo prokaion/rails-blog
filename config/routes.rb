@@ -11,9 +11,9 @@ Rails.application.routes.draw do
   get     'welcome/index'
   get     'signup'  =>  'users#new'
   get     'login'   =>  'sessions#new'
-  post    'login'   =>  'sessions#create'
+  post    'login'   =>  'sessions#create' 
   delete  'logout'  =>  'sessions#destroy'
-  get '/user_articles', to: 'articles#articles_by_user'
+  get '/user_articles', to: 'user_articles/articles_by_user#index'
   post '/check_for_duplicate_names', to: 'users#check_for_duplicate_names'
 
 

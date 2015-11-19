@@ -27,3 +27,10 @@ most_recent:
   user: archer
   created_at: <%= Time.zone.now.to_datetime %>
   published: 1
+
+unpublished:
+  title: "Draft"
+  text: "I am a draft!"
+  user: archer
+  created_at: <%= 20.minutes.ago.to_datetime %>
+  published: 0

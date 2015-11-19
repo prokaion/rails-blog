@@ -1,9 +1,14 @@
 class Article < ActiveRecord::Base
+  include Filterable
+
   belongs_to :user
   has_and_belongs_to_many :categories
   has_many :comments, dependent: :destroy
 
-  default_scope -> { order(created_at: :desc) }
+  default_scope -> { order(created_at: :desc) }  
+  scope :published, -> (published) { where published: published }
+  scope :most_recent, -> { Article.published(true).limit(4) }
+
 	validates :title, presence: true,
 					  length: { minimum: 3 }
   validates :text, presence: true

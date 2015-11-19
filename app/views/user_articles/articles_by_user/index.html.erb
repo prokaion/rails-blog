@@ -1,5 +1,5 @@
 <h2>
-  All articles of <%= link_to @current_user.name, current_user %> (<%= @articles.count %>)
+  All articles of <%= link_to @userToShow.name, @userToShow %> (<%= @articles.count %>)
 </h2>
 
 <%= will_paginate @articles, {:class => 'apple_pagination'} %>
