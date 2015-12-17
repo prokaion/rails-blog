@@ -35,6 +35,11 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :categories
 
+  # TODO ...
+  scope '/admin' do
+    resource :app_data
+  end
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
