@@ -76,5 +76,5 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  host = 'mighty-dawn-1718'
+  host = 'mighty-dawn-1718.herokuapp.com'
 end
