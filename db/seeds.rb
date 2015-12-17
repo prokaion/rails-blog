@@ -27,11 +27,12 @@ User.create!(name:  "Example User",
                 activated_at: Time.zone.now)
 =end
 
-user = User.find( 204)
-
+#user = User.find( 204)
+=begin
 50.times do
   title = Faker::Lorem.sentence(1) 
   text = Faker::Lorem.sentence(5)
   user.articles.create!(title: title, text: text) 
 
 end
+=end
