@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-
-  resources :request_scores
+  
   # You can have the root of your site routed with "root"
   root 'welcome#index'
   get 'password_resets/new'
@@ -39,6 +38,7 @@ Rails.application.routes.draw do
   # TODO ...
   scope '/admin' do
     resource :app_data
+    resources :request_scores
   end
 
 

@@ -1,5 +1,7 @@
 class RequestScoresController < ApplicationController
   before_action :set_request_score, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user
+  before_action :user_is_admin
 
   # GET /request_scores
   # GET /request_scores.json

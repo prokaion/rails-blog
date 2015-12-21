@@ -17,6 +17,16 @@ class ApplicationController < ActionController::Base
       end
     end
 
+
+    def user_is_admin
+
+      if(!current_user.admin?)
+        store_location
+        flash[:danger] = "Must be admin to do that!"
+        redirect_to login_url
+      end
+    end
+
     def session_counter
      
       request_score = RequestScore.find_by(ip: request.remote_ip)

@@ -1,14 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Ip:</strong>
-  <%= @request_score.ip %>
-</p>
+<table class="table table-bordered">
+<thead>
+  <th>Ip:</th>
+  <th>Request count:</th>
+</thead>  
 
-<p>
-  <strong>Request count:</strong>
-  <%= @request_score.request_count %>
-</p>
+<tbody>
+  <tr>
+    <td><%= @request_score.ip %></td>
+    <td><%= @request_score.request_count %></td>
+  
+  </tr>
+</tbody>>
+</table>
 
 <%= link_to 'Edit', edit_request_score_path(@request_score) %> |
 <%= link_to 'Back', request_scores_path %>
