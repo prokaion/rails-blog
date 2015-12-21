@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Request Scores</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ip</th>
+      <th>Request count</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @request_scores.each do |request_score| %>
+      <tr>
+        <td><%= request_score.ip %></td>
+        <td><%= request_score.request_count %></td>
+        <td><%= link_to 'Show', request_score %></td>
+        <td><%= link_to 'Edit', edit_request_score_path(request_score) %></td>
+        <td><%= link_to 'Destroy', request_score, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Request score', new_request_score_path %>

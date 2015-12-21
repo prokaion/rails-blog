@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ip:</strong>
+  <%= @request_score.ip %>
+</p>
+
+<p>
+  <strong>Request count:</strong>
+  <%= @request_score.request_count %>
+</p>
+
+<%= link_to 'Edit', edit_request_score_path(@request_score) %> |
+<%= link_to 'Back', request_scores_path %>

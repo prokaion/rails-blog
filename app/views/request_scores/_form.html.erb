@@ -1,0 +1,25 @@
+<%= form_for(@request_score) do |f| %>
+  <% if @request_score.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@request_score.errors.count, "error") %> prohibited this request_score from being saved:</h2>
+
+      <ul>
+      <% @request_score.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :ip %><br>
+    <%= f.text_field :ip %>
+  </div>
+  <div class="field">
+    <%= f.label :request_count %><br>
+    <%= f.number_field :request_count %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
