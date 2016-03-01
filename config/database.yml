@@ -47,6 +47,7 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+#rhabrber
 production:
   <<: *default
   database: blog_production
